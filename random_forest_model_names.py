@@ -10,6 +10,20 @@ import matplotlib.pyplot as plt
 train_data = pd.read_csv("./Data/train.csv")
 test_data = pd.read_csv("./Data/test.csv")
 
+""" # Code for splitting the first name, last name and title from the training data
+new1 = test_data.Name.str.split(',',n = 2, expand = True)
+new2 = new1[1].str.split('.',n = 2, expand = True)
+last_name = new1[0]
+title = new2[0]
+name = new2[1]
+
+train_data['last_name'] = last_name
+train_data['title'] = title
+train_data['name'] = name
+train_data.head()
+
+train_data.to_csv('train_split_names.csv', index=False) """
+
 # Features we care about
 features = ["Pclass", "Sex", "SibSp", "Parch","Age"]
 
