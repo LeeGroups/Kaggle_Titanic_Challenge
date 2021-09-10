@@ -46,10 +46,12 @@ accuracy_depth_test = [parametric_model(depth,100) for depth in depths]
 accuracy_depth_train = [parametric_model(depth,100, X_train_dummy, y_train) for depth in depths]
 
 # Plot the accuracy of the prediction of the validation (in blue) and training set (in green) with varying depths 
-plt.plot(depths, accuracy_depth_test,color='blue')
-plt.plot(depths, accuracy_depth_train,color='green')
-plt.show()
+figure, (axis0,axis1) = plt.subplots(ncols=2)
+figure.tight_layout(pad=4.0)
 
+axis0.plot(depths, accuracy_depth_test,color='blue')
+axis0.plot(depths, accuracy_depth_train,color='green')
+axis0.set_title("Accuracy as a function of depth")
 
 # Initialize the n-estimates we want to test
 n_estimate = range(70,200,10)
@@ -58,8 +60,9 @@ accuracy_est_test = [parametric_model(6,estimate) for estimate in n_estimate]
 accuracy_est_train = [parametric_model(6,estimate, X_train_dummy, y_train) for estimate in n_estimate]
 
 # Plot the accuracy of the prediction of the validation (in blue) and training set (in green) with varying n_estimates
-plt.plot(n_estimate, accuracy_est_test,color='blue')
-plt.plot(n_estimate,accuracy_est_train,color='green')
+axis1.plot(n_estimate, accuracy_est_test,color='blue')
+axis1.plot(n_estimate,accuracy_est_train,color='green')
+axis1.set_title("Accuracy as a function of n_estimate")
 plt.show()
 
 #print(accuracy_score(predictions,y_test))
